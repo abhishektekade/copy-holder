@@ -3,15 +3,28 @@
   <head>
     <meta charset="UTF-8">
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <title>Hello World!</title>
+    <title>Copy Holder</title>
+    <link rel="stylesheet" href="node_modules/bulma/css/bulma.css">
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
+    <main id="app">
+      <article class="panel is-link">
+        <p class="panel-heading has has-text-centered">
+          {{title}}
+        </p>
+        <a 
+        class="panel-block is-active"
+        v-for="item in reverseHistory"
+        @click="itemClicked(item)">
+          <pre>
+          {{'\n' + item.text}}
+        </pre>
+        <br>
+        <small>{{item.clipped}}</small>
+        </a>
+      </article>
+    </main>
 
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>
